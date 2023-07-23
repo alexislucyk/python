@@ -1,16 +1,22 @@
-usuarios=[{
-    "usr":"admin",
-    "pwd":"admin123"},
-    {"usr":"alucyk",
-    "pwd":"lucyk"},
-    {"usr":"pablo",
-    "pwd":"lucyk2"}]     # Aca creo una lista con un diccionario para guardar los usuarios
+usuarios={}    # Aca creo una lista con un diccionario para guardar los usuarios
 
-def muestra_usuario(nuevo_usuario,nueva_contra):
-    return f'¡¡ Nuevo Usuario: {nuevo_usuario}, Contraseña: {nueva_contra} !!'  # Funcion para mostrar el nuevo usuario agregado
+def nuevo_usuario(usr,pwd): # Funcion para agregar usuario
+    if usr in usuarios:
+        print (f'El usuario ya existe, ingrese otro.!!')
+    else:
+        usuarios[usr]=pwd
+        print(f'¡¡El usuario: {usr}, Contraseña: {pwd}, Se registro exitosamente!!')
 
-def todos_usuarios():
+def todos_usuarios():   # Funcion para mostrar todos los usuarios
     return usuarios
+
+def login():    # Funcion de Login
+    usr=input("Ingrese nombre de usuario: ")
+    pwd=input("Ingrese una contraseña: ")
+    if usr in usuarios and usuarios[usr]==pwd:
+        print('Acceso concedido!!')
+    else:
+        print('Usuario y/o contraseña erroneos, intente de nuevo')
 
 menu=0
 while menu==0:
@@ -22,15 +28,13 @@ while menu==0:
     seleccion=int(input("Seleccione una opcion: "))
     if seleccion==1: 
         print(" 1 - Registro ")
-        nombre=input("Ingrese nombre de usuario: ")
-        contra=input("Ingrese una contraseña: ")
-        for i in usuarios:      # Aca controlo que no se registren usuarios repetidos
-            if i["usr"]!=nombre:        # Comprobando si el usuario no existe, agrega uno nuevo
-                usuarios.append({"usr":nombre , "pwd":contra})  # Agregando nuevo usuaro a la lista
-                print(muestra_usuario(nombre,contra))
+        while True:
+            print('Para volver precione 9')
+            usr=input("Ingrese nombre de usuario: ")
+            if usr=='9':
                 break
-            else:
-                print("El usuario ya existe, ingrese otro..!!")
+            pwd=input("Ingrese una contraseña: ")
+            nuevo_usuario(usr,pwd)
 
     elif seleccion==2:
         print(" 2 - Consulta todos los usuarios ")
@@ -38,18 +42,9 @@ while menu==0:
 
     elif seleccion==3:
         print(" 3 - Login ")
-        log_nombre=input("Ingrese nombre de usuario: ") # Recibo los datos para el login
-        log_contra=input("Ingrese una contraseña: ")
-        for login in usuarios:
-            if login["usr"]==log_nombre and login["pwd"]==log_contra:   #Si los datos coinciden con el diccionario, accede.
-                print("Acceso concedido!!")
-                break
-            else:
-                print("El usuario o la contraseña es incorrecto!!")
-                break
+        login()
 
     elif seleccion==9:
-        print(" 9 - Salir ")
         exit()
     else:
         print(" ## Opcion Invalida ##")
