@@ -35,6 +35,7 @@ while menu==0:
                 break
             pwd=input("Ingrese una contraseña: ")
             nuevo_usuario(usr,pwd)
+            break
 
     elif seleccion==2:
         print(" 2 - Consulta todos los usuarios ")
