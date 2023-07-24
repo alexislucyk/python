@@ -7,8 +7,9 @@ def nuevo_usuario(usr,pwd): # Funcion para agregar usuario
         usuarios[usr]=pwd
         print(f'¡¡El usuario: {usr}, Contraseña: {pwd}, Se registro exitosamente!!')
 
-def todos_usuarios():   # Funcion para mostrar todos los usuarios
-    return usuarios
+def todos_usuarios():   # Funcion para mostrar todos los usuarios y contraseña
+    for usr,pwd in usuarios.items():
+        print(f'Usuario: {usr}, Contraseña: {pwd}')
 
 def login():    # Funcion de Login
     usr=input("Ingrese nombre de usuario: ")
