@@ -11,6 +11,12 @@ def todos_usuarios():   # Funcion para mostrar todos los usuarios y contraseña
     for usr,pwd in usuarios.items():
         print(f'Usuario: {usr}, Contraseña: {pwd}')
 
+def backup_txt():   #  Funcion para el backup de datos en un archivo txt
+    archivo=open('db_usuarios.txt', 'w')
+    for usr,pwd in usuarios.items():
+        archivo.write(f'{usr},{pwd}\n')
+    archivo.close()
+
 def login():    # Funcion de Login
     usr=input("Ingrese nombre de usuario: ")
     pwd=input("Ingrese una contraseña: ")
@@ -25,6 +31,7 @@ while menu==0:
     print(" 1 - Registro ")
     print(" 2 - Consulta todos los usuarios ")
     print(" 3 - Login ")
+    print(" 4 - Backup en TXT ")
     print(" 9 - Salir ")
     seleccion=int(input("Seleccione una opcion: "))
     if seleccion==1: 
@@ -45,6 +52,10 @@ while menu==0:
     elif seleccion==3:
         print(" 3 - Login ")
         login()
+
+    elif seleccion==4:
+        print(" 4 - Backup en TXT ")
+        backup_txt()
 
     elif seleccion==9:
         exit()
